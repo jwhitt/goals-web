@@ -28,17 +28,29 @@ class GoalsWebController {
         var mod = ModelAndView("goals")
         mod.model.put("amount", "0")
         mod.model.put("summary", ArrayList<GoalView>())
+        mod.model.put("header", true)
+        return mod
+    }
+
+    @GetMapping("/good")
+    fun goodHomePage() : ModelAndView {
+        var mod = ModelAndView("goals")
+        mod.model.put("amount", "0")
+        mod.model.put("summary", ArrayList<GoalView>())
+        mod.model.put("header", false)
         return mod
     }
 
     @PostMapping("/calc-submit")
-    fun calcPage(@RequestParam amount: String) : ModelAndView {
+    fun calcPage(@RequestParam amount: String, @RequestParam header: Boolean) : ModelAndView {
         var mod = ModelAndView("goals")
         var rt  = RestTemplate()
 
         val headers = HttpHeaders()
         headers.setContentType(MediaType.APPLICATION_JSON)
-        headers.set("end-user", "jason")
+        if (header) {
+            headers.set("end-user", "jason")
+        }
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON))
 
         val entity = HttpEntity<CalcInput>(CalcInput(amount.toDouble()), headers)

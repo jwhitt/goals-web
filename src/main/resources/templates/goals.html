@@ -14,7 +14,9 @@
 <h1 class="bg-info">Contribution Analyzer</h1>
 <div class="container">
     <span><form th:action="@{/calc-submit}" method="POST">Amount Available: <input type="text" th:value="${amount}" id="amount" name="amount"/>
-        <input type="submit" name="Go"></form>
+        <input type="submit" name="Go">
+        <input type="hidden" name="header" th:value="${header}">
+    </form>
     </span>
     <br>
 
