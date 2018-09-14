@@ -31,9 +31,9 @@
             </tr>
             <tr class="border" th:each="goalRow : ${summary}">
                 <td class="border" th:text="${goalRow.name}">goalName</td>
-                <td class="border" th:text="${goalRow.before}">before</td>
-                <td class="border" th:text="${goalRow.after}">after</td>
-                <td class="border" th:text="${goalRow.amount}">amount</td>
+                <td class="border" th:text="${#numbers.formatPercent(goalRow.before,1,2)}">before</td>
+                <td class="border" th:text="${#numbers.formatPercent(goalRow.after,1,2)}">after</td>
+                <td class="border" th:text="${#numbers.formatCurrency(goalRow.amount)}">amount</td>
             </tr>
         </table>
     </div>
