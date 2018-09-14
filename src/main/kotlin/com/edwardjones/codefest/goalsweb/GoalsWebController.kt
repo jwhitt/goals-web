@@ -58,6 +58,8 @@ class GoalsWebController {
         val summary = rt.postForEntity(svcUrl, entity, ContributionAnalysisSummary::class.java)
         mod.model.put("amount", amount)
         mod.model.put("summary", buildViewObj(summary.body))
+        mod.model.put("header", header)
+
         return mod
     }
 
