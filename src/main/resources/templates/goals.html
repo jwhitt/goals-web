@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>Contribution Analyzer</title>
+</head>
+<body>
+<h1 class="bg-info">Contribution Analyzer</h1>
+<div class="container">
+    <span><form th:action="@{/calc-submit}" method="POST">Amount Available: <input type="text" th:value="${amount}" id="amount" name="amount"/>
+        <input type="submit" name="Go"></form>
+    </span>
+    <br>
+
+    <div th:if="${summary != null && summary.isEmpty() != true}">
+        <h2 class="bg-info">Goals</h2>
+        <table class="table border">
+            <tr class="border">
+                <th scope="col" class="border">Goal</th>
+                <th scope="col" class="border">Before</th>
+                <th scope="col" class="border">After</th>
+                <th scope="col" class="border">Amt</th>
+            </tr>
+            <tr class="border" th:each="goalRow : ${summary}">
+                <td class="border" th:text="${goalRow.name}">goalName</td>
+                <td class="border" th:text="${goalRow.before}">before</td>
+                <td class="border" th:text="${goalRow.after}">after</td>
+                <td class="border" th:text="${goalRow.amount}">amount</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
