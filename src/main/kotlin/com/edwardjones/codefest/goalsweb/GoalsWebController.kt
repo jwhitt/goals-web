@@ -52,10 +52,12 @@ class GoalsWebController {
     fun buildViewObj(summary:ContributionAnalysisSummary?) : List<GoalView> {
         var goalViewList : List<GoalView>;
         goalViewList = ArrayList()
-
         for (beforeOut in summary?.before!!.goalResults) {
+            println("beforeOut=${beforeOut.goalName}")
             for (afterOut in summary?.after!!.goalResults) {
-                if(beforeOut.goalName.equals(afterOut.goalName)) {
+                println("afterOut=${afterOut.goalName}")
+
+                if(beforeOut != null && beforeOut.goalName != null && beforeOut.goalName.equals(afterOut.goalName)) {
                     goalViewList.add(
                             GoalView(beforeOut.goalName,
                                     beforeOut.successRate,
